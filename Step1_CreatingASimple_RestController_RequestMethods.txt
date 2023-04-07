@@ -1,0 +1,35 @@
+Hello World Controller:
+
+--This is the controller class which is created first that will get exposed to API
+--To make a specific class as a controller class, we have to use the Annotation "@RestController".
+--Inside, this class, we are writing a method that returns a String "Hello World".
+--To get this method connected to server, it has to get Request from the server and also mapping should be done.
+--So, annotating this method as follows:
+     	@RequestMapping(method = RequestMethod.GET, path = "/hello-world")
+//The Request got mapped to this GET Request method.
+--We can also use, @GetMapping Annotation in place of @RequestMapping. As in @GetMapping - there is no need to mention method.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Creating another method that returns HelloWorld-Bean this time:
+
+--@GetMapping(path = "/hello-world-bean")
+	public String helloWorldBean()
+	{
+		return new HelloWorldBean("Hello World Bean!");
+	}
+
+	Map the new method that returns Bean of a certain class named "HelloWorldBean".
+--Create a constructor inside that new class
+--Generate Getters & Setters.
+--Generate toString for a Last Member
+
+--Now, after rechecking all the errors & running the application, "http://localhost:8080/hello-world-bean"
+U can see the json-response as below:
+
+{
+"message": "Hello World Bean!"
+}
+
+the RAW Response:
+
+{"message":"Hello World Bean!"}

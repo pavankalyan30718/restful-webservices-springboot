@@ -1,0 +1,107 @@
+Exception Handling:
+
+--Customized responses and messages
+
+
+Created UserNotFoundException Class:
+
+package com.pk.restservices.restfulwebservices.user;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(code = HttpStatus.NOT_FOUND)
+public class UserNotFoundException extends RuntimeException {
+
+	public UserNotFoundException(String message)
+	{
+		super(message);
+	}
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+created own customized Exception Package:
+
+--Created ErrorDetails Class in it.
+
+	package com.pk.restservices.restfulwebservices.exception;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+public class ErrorDetails {
+//structure I wanted to create
+//whenever an exception occurs, I want it to return in this structure
+	//timestamp
+	//message
+	//details
+	private LocalDateTime timestamp;
+	private String message;
+	private String details;
+	
+	public ErrorDetails(LocalDateTime timestamp, String message, String details) {
+		super();
+		this.timestamp = timestamp;
+		this.message = message;
+		this.details = details;
+	}
+
+	public LocalDateTime getTimestamp() {
+		return timestamp;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public String getDetails() {
+		return details;
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+created a new class which hanldes Exceptions (Customized way) by extending ResponseEntityExceptionHandler:
+
+package com.pk.restservices.restfulwebservices.exception;
+
+import java.time.LocalDateTime;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import com.pk.restservices.restfulwebservices.user.UserNotFoundException;
+
+@ControllerAdvice
+public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+
+        @ExceptionHandler(Exception.class)
+        public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request)
+        {
+        	ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
+        			ex.getMessage(),request.getDescription(false));
+        	return new ResponseEntity(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+        //for our customized usernotfound exception
+        @ExceptionHandler(UserNotFoundException.class)
+        public final ResponseEntity<Object> hanldeUserNotFoundException(Exception ex, WebRequest request)
+        {
+        	ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
+        			ex.getMessage(),request.getDescription(false));
+        	return new ResponseEntity(errorDetails, HttpStatus.NOT_FOUND);
+        }
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+After Updating: the customized output on server is:
+
+{
+	"timestamp": "2023-03-01T09:47:49.4499251",
+	"message": "id:105",
+	"details": "uri=/users/105"
+}

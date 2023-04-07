@@ -1,0 +1,12 @@
+HAL: (JSON Hypertext Application Language)
+
+	Simple Format that gives a consistent and easy way to hyperlink between resources in your API
+
+HAL Explorer:
+	
+	An API Explorer for RESTful Hypermedia APIs using HAL
+	Enable your non-technical teams to play with APIs
+
+Spring Boot HAL Explorer:
+
+	Auto-Configures HAL Explorer for Spring Boot Projects

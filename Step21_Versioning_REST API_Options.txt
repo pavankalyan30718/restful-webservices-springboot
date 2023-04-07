@@ -1,0 +1,30 @@
+URI Versioning - Twitter
+	http://localhost:8080/v1/person
+	http://localhost:8080/v2/person
+
+Request Parameter versioning - Amazon
+	http://localhost:8080/person?version=1
+	http://localhost:8080/person?version=2
+
+(Custom) headers versioning - Microsoft
+	SAME-URL headers=[X-API-VERSION=1]
+	SAME-URL headers=[X-API-VERSION=2]
+
+Media Type Versioning - GIT Hub (a.k.a "Content negotiation" or "accept header")
+
+	SAME-URL produces=application/vnd.company.app-v1+json
+	SAME-URL produces=application/vnd.company.app-v2+json
+	
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Versioning REST API Factors:
+
+Factors to consider:
+	URI Pollution
+	Misuse of HTTP Headers
+	Chaching
+	Can we execute the request on the browser?
+	API Documentation
+	
+Summary: No Perfect Solution

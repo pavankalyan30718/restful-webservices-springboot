@@ -1,0 +1,27 @@
+Create a new method which retrieves a single user's data:
+--retrieveSpecificUser()
+	@GetMapping("/users/{id}")
+	public User retrieveSpecificUser(@PathVariable int id)
+	{
+		return service.findOne(id);
+	}
+
+--to get single user's info, we have to pass the 'ID' as parameter/Path-Variable in both GetMapping-Url & in the method-Parameter too using
+  "@PathVariable" annotation.
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+We also should create a new method in DAO Service Class that returns a single user info:
+--findOne() Method:
+	 public User findOne(int id)
+	 {
+		 Predicate<? super User> predicate = user -> user.getId().equals(id);
+		return users.stream().filter(predicate).findFirst().get();
+	 }
+
+--we can also use a FOR Loop to retrieve single users info using ID or we can also use "Functional Programming".
+--Here first we created a strem/list of users, and then we filtered them using predicate.
+--(press--ctrl+1) then create a local instance for predicate and assign --> user to it.
+--getID from user and equal it to the parameter passed. (i-e., id).
+
+--After filtering, then we have to find the first occurance and get it/return it.
+
+(This is how the return statemet written)

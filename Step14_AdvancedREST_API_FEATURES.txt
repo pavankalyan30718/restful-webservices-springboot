@@ -1,0 +1,10 @@
+Advanced Rest API Features:
+
+Documentation--Open API, SWAGGER
+Content Negotiation -- JSON,XML Response
+Internationalization - i18n --there may be users who use your API internationally
+Versioning
+HATEOAS
+Static Filtering
+Dynamic Filtering
+Monitoring

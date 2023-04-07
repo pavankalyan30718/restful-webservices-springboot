@@ -1,0 +1,25 @@
+"What is a Path Parameter:"
+
+--General URL Syntax:
+	/users/{id}/todos/{id}
+  Ex:-/users/1/todos/200
+
+We are going to create a simple URL accepting path parameters...( /hello-world/path-variable/{name}):
+
+--
+//path variable & urls
+	@GetMapping(path = "/hello-world/path-variable/{name}")
+	public HelloWorldBean helloWorldPathVariable(@PathVariable String name)
+	{
+		return new HelloWorldBean(String.format("Hello World!, %s", name));
+	}
+
+Output on Server: (http://localhost:8080/hello-world/path-variable/PavanKalyan)
+--
+	{
+	"message": "Hello World!, PavanKalyan"
+	}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Path Variables are nothing but the Parameter/Variable values that we enter in the urls.
+--To be able to accept the path-parameters we use the Annotation called "@PathVariable".

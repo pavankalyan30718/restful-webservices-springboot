@@ -1,0 +1,61 @@
+ Content Negotiation:
+
+--Same Resource has the Same URI
+ 	However Different Representations are possible.
+	Ex:- Different Content Types - XML or JSON or...
+	Ex:- Different Language - English or Dutch or...
+
+--How can a CONSUMER tell the REST API provider what they want?
+	Content Negotiation
+
+	Example: Accept header (MIME types application/xml, application/jon,..)
+	Example: Accept-language header (en,tel,fr,..)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+Add the dependency of accept headers:
+	
+<dependency>
+	<groupId>com.fasterxml.jackson.dataformat</groupId>
+	<artifactId>jackson-dataformat-xml</artifactId>
+</dependency>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Output on the server after running a GET Method: (before adding this dependency)
+--By Default JSON Response
+[
+{
+"id": 1,
+"name": "Adam",
+"brithdate": "1993-03-01"
+},
+{
+"id": 2,
+"name": "Eve",
+"brithdate": "1998-03-01"
+},
+{
+"id": 3,
+"name": "Pavan",
+"brithdate": "2003-03-01"
+}
+]
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+After adding dependency: (Go to Talend again,Click on ADD Header and give Accept, "application/xml" so that the data will come in this format)
+<List>
+<item>
+<id>1</id>
+<name>Adam</name>
+<brithdate>1993-03-01</brithdate>
+</item>
+<item>
+<id>2</id>
+<name>Eve</name>
+<brithdate>1998-03-01</brithdate>
+</item>
+<item>
+<id>3</id>
+<name>Pavan</name>
+<brithdate>2003-03-01</brithdate>
+</item>
+</List>

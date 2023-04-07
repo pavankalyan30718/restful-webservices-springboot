@@ -1,0 +1,12 @@
+Creating a Social Media Application REST API:
+
+.Building a REST API for Social Media Application.
+
+--Key Resources:
+  Social Media mainly depends upon:
+  --Users
+  --Posts
+
+--Key Details:
+  --User: Id, name, BirthDate
+  --Post: Id, Description

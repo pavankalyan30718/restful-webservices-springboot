@@ -1,0 +1,30 @@
+To Implement Validations for REST API:
+
+--We Need Dependency "starter-validation".
+--go to 'POM.xml'--add this dependency.
+--once we add it in pom.xml, restart the server
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Now, I want to check whether the User that is created is Valid.
+
+--Go to CreateUser method -- UserResource class
+--using "@Valid" annotation there:
+
+	@PostMapping("/users")
+	public void createUser(@Valid @RequestBody User user)
+	{
+		service.saveUser(user);
+	} 
+--@Valid:whenever the binding happens, the validations which are implemented on your object will get automatically import.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Writing/Implementing constraints:
+
+--I want my user name of Size characters at least --2(minimum)
+--So, go to User.java
+	@Size(min=2)
+	private String name;
+--I want my user's birth date in Past date:
+	@Past
+	private LocalDate brithdate;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------

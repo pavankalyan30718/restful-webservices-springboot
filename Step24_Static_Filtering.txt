@@ -1,0 +1,115 @@
+Filtering:
+
+Create a new Rest Controller class called FilteringController:
+
+package com.pk.restservices.restfulwebservices.filtering;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class FilteringController {
+	
+	@GetMapping("/filtering")
+	public SomeBean filtering()
+	{
+		return new SomeBean("value1","value2","value3");
+	}
+
+	@GetMapping("/filtering-list")
+	public List<SomeBean> filteringList()
+	{
+		return Arrays.asList(new SomeBean("value1","value2","value3"), new SomeBean("value4","value5","value6"));
+	}
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+SomeBean Class:
+package com.pk.restservices.restfulwebservices.filtering;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+//@JsonIgnoreProperties({"field1","field2"})
+public class SomeBean {
+
+	private String field1;
+	@JsonIgnore
+	private String field2;
+	private String field3;
+	public SomeBean(String field1, String field2, String field3) {
+		super();
+		this.field1 = field1;
+		this.field2 = field2;
+		this.field3 = field3;
+	}
+	public String getField1() {
+		return field1;
+	}
+	public void setField1(String field1) {
+		this.field1 = field1;
+	}
+	public String getField2() {
+		return field2;
+	}
+	public void setField2(String field2) {
+		this.field2 = field2;
+	}
+	public String getField3() {
+		return field3;
+	}
+	public void setField3(String field3) {
+		this.field3 = field3;
+	}
+	@Override
+	public String toString() {
+		return "SomeBean [field1=" + field1 + ", field2=" + field2 + ", field3=" + field3 + "]";
+	}
+}
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Output:
+
+/filtering:
+{
+"field1": "value1",
+"field2": "value2",
+"field3": "value3"
+}
+
+/filtering-list:
+
+[
+{
+"field1": "value1",
+"field2": "value2",
+"field3": "value3"
+},
+{
+"field1": "value4",
+"field2": "value5",
+"field3": "value6"
+}
+]
+
+//After Applying @JsonIgnore on field2:
+[
+{
+"field1": "value1",
+"field3": "value3"
+},
+{
+"field1": "value4",
+"field3": "value6"
+}
+]

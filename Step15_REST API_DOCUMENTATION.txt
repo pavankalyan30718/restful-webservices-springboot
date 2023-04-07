@@ -1,0 +1,15 @@
+
+Your REST API Consumers need to understand your REST API:
+--Resources
+--Actions
+--Request/Response Structure (Constraints/Validations)
+
+
+Challenges:
+--Accuracy: Documentation is upto date and correct?
+--Consistency: You might have 100s of REST API in an enterprise.
+   How do you ensure consistency?
+
+Options:
+--Manually Maintain Documentation (make sure that it's in sync with code)
+--Generating Documentation from your CODE.
