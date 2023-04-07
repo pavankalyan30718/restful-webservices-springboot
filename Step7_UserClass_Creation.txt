@@ -1,0 +1,36 @@
+Create a Class User:
+
+--Declare variables - id,name,birthdate
+--Generate a Constructor
+--Generate Getters & Setters
+--Generate ToString() method also.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+what do we want to do now is, to build a REST API around this User BEAN.
+
+To be able to play with the DB or to manipulate data in DB we have to use "DAO object" -- DATA Access Object
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Creating DAO Service to manage this:
+
+--Create New Class UserDaoService
+--I would want Spring to Manage this class, So insert Annotation @Component.
+
+
+--For now, we are creating a static Array List to insert data. (later we will be using JPA/Hibernate to communicate with DB):
+
+		 private static List<User> users = new ArrayList<>();
+ 
+	 	static {
+			 users.add(new User(1,"Adam",LocalDate.now().minusYears(30)));
+		 	users.add(new User(2,"Eve",LocalDate.now().minusYears(25)));
+		 	users.add(new User(3,"Pavan",LocalDate.now().minusYears(20)));
+	 	}
+	 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--Next Creating findAll() method which returns the list:
+
+	public List<User> findAll(){
+		 return users;
+	 }

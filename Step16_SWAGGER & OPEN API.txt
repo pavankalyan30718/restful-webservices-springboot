@@ -1,0 +1,33 @@
+SWAGGER & OPEN API:
+
+2011: Swagger Specification & Swagger tools were introduced.
+
+2016: Open API Specification created based on Swagger Specification.
+--Swagger Tools (ex: Swagger UI) continue to exist.
+
+Open API Specification: Standard, Language-agnostic interface.
+--It helps to Discover and understand REST API
+--Earlier called Swagger Specification
+
+Swagger UI: Visualize & Interact with your REST API.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NOTE: Important:
+(The Open API Definition Provides API Definition for your REST API.
+The Swagger API helps to visualize it & Play with it)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Add the Swagger/open api dependency in your POM.xml:
+
+<dependency>
+	<groupId>org.springdoc</groupId>
+	<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+	<version>2.0.2</version>
+</dependency>
+
+then wait for the download process to complete...
+then open Swagger URL:
+
+   "http://localhost:8080/swagger-ui.html"

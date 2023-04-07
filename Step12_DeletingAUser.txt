@@ -1,0 +1,16 @@
+Resource Class method:
+//DELETE/users/{path-variable}
+	@DeleteMapping("/users/{id}")
+	public void deleteUser(@PathVariable int id)
+	{
+		service.deleteById(id);
+	}
+
+Method in DAOService Class:
+
+ //delete Specific user based on id
+	 public void deleteById(int id)
+	 {
+		 Predicate<? super User> predicate = user -> user.getId().equals(id);
+		 users.removeIf(predicate);
+	}

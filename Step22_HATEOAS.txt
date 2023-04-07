@@ -1,0 +1,78 @@
+HATEOAS:
+	Hypermedia as the Engine of Application State 
+
+
+Websites allow you to:
+	See Data AND Perform Actions (using Links)
+
+How about enhancing your REST API to tell consumers how to perform subsequent actions?
+	HATEOAS
+
+Implementation Options:
+	Custom Format and Implementation--Difficult to maintain
+	Use Standard Implementation--HAL (JSON Hypertext Application Language): Simple format that gives a consistent and easy way to hyperlink between resources in your API.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Add Dependency in order to use:
+
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-hateoas</artifactId>
+</dependency>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+1.Entity Model
+2.WebMVCLink Builder
+
+Updated UserResource Method with EntityModel Wrapping Concept:
+
+@GetMapping("/users/{id}")
+	public EntityModel<User> retrieveSpecificUser(@PathVariable int id)
+	{
+		User user = service.findOne(id);
+		
+		if(user == null)
+		{
+			throw new UserNotFoundException("id:" +id);
+		}
+		EntityModel<User> entityModel = EntityModel.of(user);
+		
+		return entityModel;
+	}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+@GetMapping("/users/{id}")
+	public EntityModel<User> retrieveSpecificUser(@PathVariable int id)
+	{
+		User user = service.findOne(id);
+		
+		if(user == null)
+		{
+			throw new UserNotFoundException("id:" +id);
+		}
+		EntityModel<User> entityModel = EntityModel.of(user);
+		
+		//Now Add link to retrieve all users using "WebMvcLinkBuilder"
+		WebMvcLinkBuilder link = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
+		entityModel.add(link.withRel("all-users"));
+		
+		return entityModel;
+	}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+In Addition to data, Hateoas provides links also to the user:
+Server Output:
+
+{
+"id": 1,
+"name": "Adam",
+"brithdate":[1993, 3, 1],
+"links":[
+{
+"rel": "all-users",
+"href": "http://localhost:8080/users"
+}
+]
+}

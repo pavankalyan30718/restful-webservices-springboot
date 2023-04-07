@@ -1,0 +1,50 @@
+Internationalization - i18n
+
+--Your REST API might have consumers from around the world.
+
+--How do you customize it for users around the world?
+   Internationalization - i18n
+
+Typically HTTP Request Header - Accept-Language is used
+ --Accept-language -- indicates the natural language and locale that the consumer prefers.
+--Ex: en-English (Good Morning)
+--Ex: nl-Dutch(Goedemorgen)
+--Ex: fr-French(Bonjour)
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+The First way to get our method/parameters internationalized is to,
+--create a file named "messages.properties" and place it in the same path as of "application.properties"
+
+To Acess this file and data in it from the class itself, springboot makes our work easier and provides us "MessageSource"
+
+
+//getting Message Source to access messages.properties
+	private MessageSource messagesource; 
+
+
+	public HelloWorldController(MessageSource messagesource)
+	{
+		this.messagesource = messagesource;
+	}
+
+Message Source is a Strategy interface for resolving messages, with support for the parameterizationand internationalization of such messages. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Locale: we can get it from RequestHeader--from the Utility Method "LocaleContextHolder"
+
+//Internationalized -- i18n
+	@GetMapping(path = "/hello-world-internationalized")
+	public String helloWorldInternationalized()
+	{
+		Locale locale = LocaleContextHolder.getLocale();
+		return messagesource.getMessage("good.morning.message", null, "Default Message", locale);
+		//return new HelloWorldBean("Hello World Bean!");
+	}
+
+Output:(given in message.properties for message good.morning.message is 'Good Morning')
+Good Morning 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,15 @@
+Spring Boot Actuator:
+
+--Provides Spring Boot's production-ready features.
+	--Monitor and manage your application in your production.
+
+Spring Boot Starter Actuator:
+
+--Starter to add Spring Boot Actuator to your application
+	--Sprint-Boot-Starter-actuator
+
+--Provides a number of endpoints:
+	--beans- Complete list of Spring beans in your app
+	--health-Application health information
+	--metrics-Application metrics
+	--mappings-Details around Request Mappings

@@ -1,0 +1,49 @@
+Creating a Rest Controller & Making it to communicate with DAO Service class to get all the Users Data:
+
+Create a new class(Rest Controller) "UserResource":
+
+
+@RestController
+public class UserResource {
+
+	private UserDaoService service;
+	
+	public UserResource(UserDaoService service)
+	{
+		this.service = service;
+	}
+	
+	//we have to get details from UserDaoService
+	@GetMapping("/users")
+	public List<User> retrieveAllUsers(){
+		return service.findAll();
+	}
+}
+
+--As we have to communicate with DAO Service class, we have to use its reference object in here. (private UserDaoService service;)
+--A method is written to get all the objects from DAOServiceClass--findAll() method:
+	public List<User> retrieveAllUsers(){
+		return service.findAll();
+	}
+--Mapping is done with @GetMapping Annotation (@GetMapping("/users"))
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Output on Server:
+
+[
+{
+"id": 1,
+"name": "Adam",
+"brithdate": "1993-03-01"
+},
+{
+"id": 2,
+"name": "Eve",
+"brithdate": "1998-03-01"
+},
+{
+"id": 3,
+"name": "Pavan",
+"brithdate": "2003-03-01"
+}
+]

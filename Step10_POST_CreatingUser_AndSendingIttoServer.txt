@@ -1,0 +1,86 @@
+//POST/users
+	@PostMapping("/users")
+
+Create a new method called createUser():
+	@PostMapping("/users")
+	public void createUser(@RequestBody User user)
+	{
+	    service.saveUser(user);//Mapping with saveUser method that is created in DAO class to save new user
+	}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+@RequestBody Annotation:
+--Annotation indicating a method parameter should be bound to the body of the web request.
+--We can pass the user data & communicate with DAO Class with this annotation.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+SaveUser Method in DAOService Class:
+
+	 //saving a new User to User class
+	 public User saveUser(User user)
+	 {
+		 user.setId(++usersCount);
+		 users.add(user);
+		 return user;
+	 }
+
+--setting unique 'id' for User object "user" that is sent as a PostMapping Parameter from "createUserMethod"
+--Adding the new User to UserList --users.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+++usersCount: will automatically increments the id if any new user is created.
+
+we have created a local field of it as below:
+
+	private static int usersCount =0;
+	 
+	 static {
+		users.add(new User(++usersCount ,"Adam",LocalDate.now().minusYears(30)));
+		 users.add(new User(++usersCount,"Eve",LocalDate.now().minusYears(25)));
+		 users.add(new User(++usersCount,"Pavan",LocalDate.now().minusYears(20)));
+	 }
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+We need an REST API Client/Tool to check PostMappings or "POST" requests:
+
+--So,We will be using "Talend API Tester" as REST API Client.
+--Talend API Tester makes it easy to invoke, test & discover HTTP & REST API's
+--Add Extension to Chrome.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Sending JSON Data as BODY of POST request calling:
+
+POST : URL: http://localhost:8080/users
+
+BODY :
+
+	{
+		"name": "PK",
+		"brithdate": "1993-03-01"
+	}
+
+
+OUTPUT after Running GET Method again :
+	[
+		{
+			"id": 1,
+			"name": "Adam",
+			"brithdate": "1993-03-01"
+		},
+		{
+			"id": 2,
+			"name": "Eve",
+			"brithdate": "1998-03-01"
+		},
+		{
+			"id": 3,
+			"name": "Pavan",
+			"brithdate": "2003-03-01"
+		},
+		{
+			"id": 4,
+			"name": "PK",
+			"brithdate": "1993-03-01"
+		}
+	]

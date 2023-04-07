@@ -1,0 +1,22 @@
+Customizing REST API Responses - Filtering & More...
+
+--Serialization:
+	Convert an object to stream (ex: JSON)
+	Most Popular JSON Serialization in Java: Jackson
+
+--How about customizing the REST API response returned by Jackson Framework?
+
+	Customize field names in response (id,name, birthdate)
+	--Ex:_ @JsonProperty("user_name")
+
+	Return only selected fields
+	--Filtering
+		Ex:- Filter out Passwords
+
+	--Two Types:
+		Static Filtering: Same Filtering for a bean across different REST APIs.
+		--@JsonIgnoreProperties, @JsonIgnore
+		Dynamic Filtering: Customize filtering for a bean for a specific REST API
+		--@JsonFIlter with FilterProvider
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------

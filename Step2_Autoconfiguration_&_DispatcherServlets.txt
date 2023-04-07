@@ -1,0 +1,36 @@
+Spring Boot Magic:
+
+1.How Requests are being handled?
+
+--DispatcherServlet - Front Controller Pattern
+  --Mapping Servlet that maps to the root of urls.
+  --dispatcherServlet urls=[/] (U can also check in log)
+  --It maps the request to the RIGHT Controller.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Who's Configuring Dispatcher Servlet?
+
+--AutoConfiguration (DispatcherServletAutoConfiguration)
+--It's one of the main features in SpringBoot.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+3.How does HelloWorldBean object get converted into a 'JSON' response?
+
+--@ResponseBody + JacksonHttpMessageConverters are the two important parts that are involved.
+--AutoConfiguration(JacksonHttpMessageConvertersConfiguration)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+4.Who's configuring Error Mapping?
+
+--Again,
+  Autoconfiguration (ErrorMvcAutoConfiguration)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+5.How are these all jars available (Spring, Spring MVC, Jackson, Tomcat)?
+
+--Starter Projects: Spring Boot Starter Web (As we have installed from dependencies--spring initializer)
+
+(We can also watch all our project related dependencies inside--"POM.xml" file.)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
